@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import config from "config";
 import cookieParser from "cookie-parser";
+import routes from "../routes";
 
 const createServer = () => {
   const app = express();
@@ -13,6 +14,7 @@ const createServer = () => {
       credentials: true,
     })
   );
+  routes(app);
 
   return app;
 };
