@@ -26,7 +26,7 @@ export const authRegisterValidator = object({
   }),
 });
 
-export const authLoginSchema = object({
+export const authLoginValidator = object({
   body: object({
     email: string({
       required_error: "Email is required",
@@ -38,4 +38,4 @@ export const authLoginSchema = object({
 });
 
 export type AuthRegisterValidator = TypeOf<typeof authRegisterValidator>;
-export type AuthLoginValidator = TypeOf<typeof authLoginSchema>;
+export type AuthLoginValidator = TypeOf<typeof authLoginValidator>;

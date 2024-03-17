@@ -2,12 +2,21 @@ import { Express, Request, Response } from "express";
 import validateRequest from "./middlewares/validateRequest.middleware";
 import {
   authRegisterValidator,
-  authLoginSchema,
+  authLoginValidator,
 } from "./validators/auth.validator";
 import {
   authRegisterHandler,
   authLoginHandler,
 } from "./controllers/auth.controller";
+import {
+  listCharactersHandler,
+  getCharacterHandler,
+} from "./controllers/characters.controller";
+import {
+  listRequestValidator,
+  getSingleRequestValidator,
+} from "./validators/characters.validator";
+import authenticateUser from "./middlewares/authenticateUser.middleware";
 
 const routes = (app: Express) => {
   // Health
@@ -19,15 +28,23 @@ const routes = (app: Express) => {
     validateRequest(authRegisterValidator),
     authRegisterHandler
   );
-  app.post("/api/login", validateRequest(authLoginSchema), authLoginHandler);
+  app.post("/api/login", validateRequest(authLoginValidator), authLoginHandler);
 
   // Rick and Morty
-  // list Characters + pagination
-  // get action by Character
+  app.get(
+    "/api/characters/:page",
+    [authenticateUser, validateRequest(listRequestValidator)],
+    listCharactersHandler
+  );
+  app.get(
+    "/api/character/:id",
+    [authenticateUser, validateRequest(getSingleRequestValidator)],
+    getCharacterHandler
+  );
+
   // create Character
   // edit Character
   // delete Character
-  // like char
 };
 
 export default routes;

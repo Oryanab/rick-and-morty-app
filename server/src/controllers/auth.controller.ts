@@ -18,8 +18,6 @@ export const authRegisterHandler = async (
     return res.status(200).send(omit(user, "password"));
   } catch (e: any) {
     logger.error(e.message);
-    console.log("GOT HERE", e.message);
-
     return res.status(400).send(e.message);
   }
 };

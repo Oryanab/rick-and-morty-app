@@ -28,10 +28,11 @@ export const verifyJwtToken = (
   decoded: JwtPayload | string | null;
 } => {
   try {
-    const decoded = jwt.verify(token, privateKey);
+    const decoded = jwt.verify(token, privateKey) as jwt.JwtPayload;
+
     return {
       valid: true,
-      expired: false,
+      expired: Date.now() >= decoded.exp! * 1000,
       decoded,
     };
   } catch (error: any) {

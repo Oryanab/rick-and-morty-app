@@ -12,17 +12,14 @@ const authenticateUser = async (
     get(req, "headers.authorization", "").replace(/^Bearer\s/, "");
 
   if (!accessToken) {
-    return next();
+    return res.status(403).send("Invalid user please register");
   }
-
-  const { decoded } = verifyJwtToken(accessToken);
-
-  if (decoded) {
+  const { decoded, expired } = verifyJwtToken(accessToken);
+  if (decoded && !expired) {
     res.locals.user = decoded;
     return next();
   }
-
-  return next(); //res.status(403).send("Invalid user or session expired please login");
+  return res.status(403).send("Session expired please login");
 };
 
 export default authenticateUser;
