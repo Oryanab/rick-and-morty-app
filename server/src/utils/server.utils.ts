@@ -3,7 +3,6 @@ import cors from "cors";
 import config from "config";
 import cookieParser from "cookie-parser";
 import routes from "../routes";
-
 const createServer = () => {
   const app = express();
   app.use(cookieParser());

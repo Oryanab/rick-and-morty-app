@@ -7,6 +7,7 @@ import {
 import {
   authRegisterHandler,
   authLoginHandler,
+  authSessionHandler,
 } from "./controllers/auth.controller";
 import {
   listCharactersHandler,
@@ -29,8 +30,9 @@ const routes = (app: Express) => {
     authRegisterHandler
   );
   app.post("/api/login", validateRequest(authLoginValidator), authLoginHandler);
+  app.get("/api/session", authenticateUser, authSessionHandler);
 
-  // Rick and Morty
+  // Rick and Morty List
   app.get(
     "/api/characters/:page",
     [authenticateUser, validateRequest(listRequestValidator)],
@@ -41,10 +43,6 @@ const routes = (app: Express) => {
     [authenticateUser, validateRequest(getSingleRequestValidator)],
     getCharacterHandler
   );
-
-  // create Character
-  // edit Character
-  // delete Character
 };
 
 export default routes;

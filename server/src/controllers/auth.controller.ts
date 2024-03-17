@@ -51,3 +51,7 @@ export const authLoginHandler = async (
 
   res.status(200).send(`${user.username} logged in Successfully`);
 };
+
+export const authSessionHandler = (req: Request, res: Response) => {
+  return res.send(res.locals.user);
+};
