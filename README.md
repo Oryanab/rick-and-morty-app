@@ -2,12 +2,11 @@
 
 ## Running The Project:
 
+- For running the project make sure you have npm@10.1.0 and node@20^ installed
 - The app will be available at http://localhost:8080/ after executing the following command:
+
 ```
-cd client && npm i && cd ../server && npm i
-```
-```
-cd client && npm run build && cd ../server && npm start
+npm start
 ```
 
 ![alt text](image.png)
@@ -18,6 +17,7 @@ cd client && npm run build && cd ../server && npm start
 - UI displays Rick and Morty character data
 - Pagination functionality with in-memory caching
 - Every character and its features can be viewed in a detailed dialog
+- Frontend tech stack: React (typescript), Radix-UI,
 
 ## Additional Backend Features (not implemented in UI):
 
