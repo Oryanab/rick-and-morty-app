@@ -3,7 +3,9 @@
 ## Running The Project:
 
 - The app will be available at http://localhost:8080/ after executing the following command:
-
+```
+cd client && npm i && cd ../server && npm i
+```
 ```
 cd client && npm run build && cd ../server && npm start
 ```
