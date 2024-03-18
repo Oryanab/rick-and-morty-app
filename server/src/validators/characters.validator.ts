@@ -1,36 +1,5 @@
 import { TypeOf, object, string } from "zod";
 
-interface Location {
-  id: string;
-  name: string;
-  type: string;
-  dimension: string;
-  residents: Character[];
-  created: string;
-}
-
-interface Episode {
-  id: string;
-  name: string;
-  air_date: string;
-  episode: string;
-  characters: Character[];
-  created: string;
-}
-
-interface Character {
-  id: string;
-  name: string;
-  status: string;
-  species: string;
-  type: string;
-  gender: string;
-  origin: Location;
-  image: string;
-  episode: Episode[];
-  created: string;
-}
-
 export const listRequestValidator = object({
   params: object({
     page: string({

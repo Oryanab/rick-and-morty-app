@@ -3,13 +3,12 @@ import config from "config";
 import logger from "./logger.utils";
 import { get } from "lodash";
 
-const privateKey = config.get<string>("privateKey");
-
 export const signJwtToken = <T>(
   params: T,
   options?: jwt.SignOptions | undefined
 ): string | undefined => {
   try {
+    const privateKey = config.get<string>("privateKey");
     const token = jwt.sign(params as T as Object, privateKey, {
       ...(options && options),
       algorithm: "HS256",
@@ -28,8 +27,8 @@ export const verifyJwtToken = (
   decoded: JwtPayload | string | null;
 } => {
   try {
+    const privateKey = config.get<string>("privateKey");
     const decoded = jwt.verify(token, privateKey) as jwt.JwtPayload;
-
     return {
       valid: true,
       expired: Date.now() >= decoded.exp! * 1000,

@@ -40,7 +40,7 @@ const routes = (app: Express) => {
   );
   app.get(
     "/api/character/:id",
-    [authenticateUser, validateRequest(getSingleRequestValidator)],
+    validateRequest(getSingleRequestValidator),
     getCharacterHandler
   );
 };

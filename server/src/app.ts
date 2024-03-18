@@ -8,5 +8,9 @@ const app = createServer();
 
 app.listen(port, () => {
   logger.info(`App is running on http://localhost:${port}`);
-  connectDatabase();
+  try {
+    connectDatabase();
+  } catch (error) {
+    logger.error(error);
+  }
 });

@@ -32,7 +32,7 @@ const queries = {
   `,
   singleCharacter: (id: number) => `
     query GetSingleCharacter {
-        character (id: $${id}) {
+        character (id: ${id}) {
             id
             name
             species
@@ -72,7 +72,7 @@ export const getCharacterHandler = async (
 ) => {
   const { id } = req.params;
   try {
-    const character = fetchQuery(queries.singleCharacter(parseInt(id)));
+    const character = await fetchQuery(queries.singleCharacter(parseInt(id)));
     res.status(200).send(character);
   } catch (error: any) {
     logger.error(error.message);

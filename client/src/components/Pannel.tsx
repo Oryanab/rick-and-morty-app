@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import SideBar from "./SideBar";
 import TopBar from "./TopBar";
+import CharactersTable from "./CharactersTable";
 
 const PannelContainer = styled(Box)`
   height: 100vh;
@@ -16,6 +17,7 @@ const Pannel = () => {
   return (
     <PannelContainer>
       <TopBar />
+      <CharactersTable />
     </PannelContainer>
   );
 };

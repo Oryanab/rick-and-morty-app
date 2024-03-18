@@ -1,4 +1,3 @@
-import { GraphQLObjectType } from "graphql";
 import logger from "../utils/logger.utils";
 import axios from "axios";
 

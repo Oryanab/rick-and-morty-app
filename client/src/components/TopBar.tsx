@@ -13,7 +13,6 @@ const TopBarContainer = styled(Box)`
   width: 100%;
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
-  font-style: normal;
   font-size: 18px;
   padding: 0 24px;
 `;
@@ -21,7 +20,7 @@ const TopBarContainer = styled(Box)`
 const TopBar = () => {
   return (
     <TopBarContainer>
-      <span>Welcome, USERNAME</span>
+      <span>Welcome Back</span>
       <UserMenu />
     </TopBarContainer>
   );

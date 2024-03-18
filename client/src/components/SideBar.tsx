@@ -44,7 +44,9 @@ const MenuItem: React.FC<MenuItemProps> = ({ url, icon: Icon }) => {
     <MenuListItem
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => window.open(url, "_blank")}
+      onClick={() =>
+        url !== "/" ? window.open(url, "_blank") : window.location.reload()
+      }
     >
       <Icon
         style={{
