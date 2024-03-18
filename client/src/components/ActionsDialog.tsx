@@ -30,7 +30,9 @@ const ActionsDialog: React.FC<ActionsModalProps> = ({ characterId }) => {
       <Dialog.Trigger>
         <Button>View</Button>
       </Dialog.Trigger>
-      <Dialog.Content style={{ maxWidth: 450 }}>
+      <Dialog.Content
+        style={{ maxWidth: 800, height: 400, overflow: "hidden" }}
+      >
         <Box
           style={{
             display: "flex",
@@ -46,13 +48,17 @@ const ActionsDialog: React.FC<ActionsModalProps> = ({ characterId }) => {
             <Cross2Icon style={{ height: "20px", width: "20px" }} />
           </Dialog.Close>
         </Box>
-        <Dialog.Description size="2" mb="4">
+        <Dialog.Description
+          size="2"
+          mb="4"
+          style={{ display: "flex", gap: "20px" }}
+        >
           <Box
             style={{
               background: "#14203c",
               color: "#fff",
-              height: "200px",
-              width: "100%",
+              width: "50%",
+              height: 300,
               overflow: "scroll",
               padding: "10px 20px",
               borderRadius: "4px",
@@ -63,6 +69,13 @@ const ActionsDialog: React.FC<ActionsModalProps> = ({ characterId }) => {
           >
             {JSON.stringify(characterData)}
           </Box>
+          <img
+            width={200}
+            height={300}
+            style={{ flex: 1 }}
+            src={characterData?.image}
+            alt={characterData?.name}
+          />
         </Dialog.Description>
       </Dialog.Content>
     </Dialog.Root>
