@@ -2,11 +2,10 @@
 
 ## Running The Project:
 
-- The app will be available at http://localhost:8080/ after running the following command:
+- The app will be available at http://localhost:8080/ after executing the following command:
 
 ```
 cd client && npm run build && cd ../server && npm start
-
 ```
 
 ![alt text](image.png)
@@ -20,7 +19,7 @@ cd client && npm run build && cd ../server && npm start
 
 ## Additional Backend Features (not implemented in UI):
 
-- Auth module - Login, Register, Session
+- User Auth support - Login, Register, Session
 - Add a .env file on the server to enable additional features (can work without).
 
 ```
