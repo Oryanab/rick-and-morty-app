@@ -3,6 +3,8 @@ import cors from "cors";
 import config from "config";
 import cookieParser from "cookie-parser";
 import routes from "../routes";
+import path from "path";
+
 const createServer = () => {
   const app = express();
   app.use(cookieParser());
@@ -13,8 +15,12 @@ const createServer = () => {
       credentials: true,
     })
   );
-  routes(app);
+  app.use(express.static(path.join(__dirname, "../../../client/build")));
+  app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../../client/build/index.html"));
+  });
 
+  routes(app);
   return app;
 };
 

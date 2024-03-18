@@ -1,7 +1,6 @@
 import { Box } from "@radix-ui/themes";
 import React from "react";
 import styled from "styled-components";
-import UserMenu from "./UserMenu";
 
 const TopBarContainer = styled(Box)`
   display: flex;
@@ -21,7 +20,12 @@ const TopBar = () => {
   return (
     <TopBarContainer>
       <span>Welcome Back</span>
-      <UserMenu />
+      <img
+        style={{ userSelect: "none" }}
+        src="/images/Rick_and_Morty_logo.png"
+        width={120}
+        height={40}
+      />
     </TopBarContainer>
   );
 };
