@@ -12,7 +12,7 @@ npm start
 ![alt text](image.png)
 ![alt text](image-1.png)
 
-## General Description: (were not implemented in UI):
+## General Description:
 
 - UI displays Rick and Morty character data
 - Pagination functionality with in-memory caching
