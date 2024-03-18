@@ -1,8 +1,6 @@
-import { Box } from "@radix-ui/themes";
 import React from "react";
+import { Box } from "@radix-ui/themes";
 import styled from "styled-components";
-
-import SideBar from "./SideBar";
 import TopBar from "./TopBar";
 import CharactersTable from "./CharactersTable";
 

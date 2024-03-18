@@ -4,7 +4,7 @@ import {
   LinkedInLogoIcon,
 } from "@radix-ui/react-icons";
 import { IconProps } from "@radix-ui/react-icons/dist/types";
-import { Box, Button } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 import React, { useState } from "react";
 import styled from "styled-components";
 

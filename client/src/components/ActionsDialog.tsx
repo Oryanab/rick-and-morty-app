@@ -1,25 +1,23 @@
-import { gql, useQuery } from "@apollo/client";
 import { Box, Button, Dialog } from "@radix-ui/themes";
 import React, { useCallback, useEffect, useState } from "react";
-import { queries } from "./CharactersTable";
 import axios from "axios";
-import { Character } from "../contexts/CharactersProvider";
 import { Cross2Icon } from "@radix-ui/react-icons";
+import { Character } from "../types";
 
 interface ActionsModalProps {
-  id: string;
+  characterId: string;
 }
 
-const ActionsModal: React.FC<ActionsModalProps> = ({ id }) => {
+const ActionsDialog: React.FC<ActionsModalProps> = ({ characterId }) => {
   const [open, setOpen] = useState(false);
   const [characterData, setCharacterData] = useState<Character>();
 
   const getCharacterByIt = useCallback(async () => {
     const { data } = await axios.get(
-      `http://localhost:8080/api/character/${id}`
+      `http://localhost:8080/api/character/${characterId}`
     );
     setCharacterData(data["data"]["character"]);
-  }, [id]);
+  }, [characterId]);
 
   useEffect(() => {
     if (open) {
@@ -71,4 +69,4 @@ const ActionsModal: React.FC<ActionsModalProps> = ({ id }) => {
   );
 };
 
-export default ActionsModal;
+export default ActionsDialog;

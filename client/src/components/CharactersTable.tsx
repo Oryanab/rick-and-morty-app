@@ -3,8 +3,8 @@ import { Box, Button, Flex, Skeleton } from "@radix-ui/themes";
 import gql from "graphql-tag";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
-import { Characters } from "../contexts/CharactersProvider";
-import ActionsModal from "./ActionsDialog";
+import { Characters } from "../types";
+import ActionsDialog from "./ActionsDialog";
 
 export const queries = {
   characters: (page: number) => `
@@ -135,7 +135,7 @@ const CharactersTableRow: React.FC<CharactersTableRowProps> = ({
           textAlign: "center",
         }}
       >
-        {type === "header" ? "Actions" : <ActionsModal id={id!} />}
+        {type === "header" ? "Actions" : <ActionsDialog characterId={id!} />}
       </Box>
     </Flex>
   );
@@ -167,38 +167,47 @@ const LoadingTable = () => (
   </>
 );
 
-const CharactersTable = () => {
+interface CharactersTableProps {
+  initalDataInfo?: Characters["characters"]["info"];
+}
+
+const CharactersTable: React.FC<CharactersTableProps> = ({
+  initalDataInfo = {} as Characters["characters"]["info"],
+}) => {
   const [page, setPage] = useState<number>(1);
-  const [dataInfo, setDataInfo] = useState<Characters["characters"]["info"]>();
-  const [displayedResults, setDisplayedResults] = useState<number>(0);
-  const { data, loading } = useQuery<Characters>(
-    gql`
-      ${queries.characters(page)}
-    `
-  );
+  const [dataInfo, setDataInfo] =
+    useState<Characters["characters"]["info"]>(initalDataInfo);
+  const { data, loading } = useQuery<Characters>(gql`
+    ${queries.characters(page)}
+  `);
 
   const handleNextPage = useCallback(() => {
-    if (data?.characters.info?.next) {
+    if (data?.characters.info?.next && !loading) {
       setPage(data?.characters.info?.next);
-      setDisplayedResults((prev) => prev + data?.characters.results.length);
     }
   }, [data]);
 
   const handlePrevPage = useCallback(() => {
-    if (data?.characters.info?.prev) {
+    if (data?.characters.info?.prev && !loading) {
       setPage(data?.characters.info?.prev);
-      setDisplayedResults((prev) => prev - data?.characters.results.length);
     } else {
       setPage(1);
     }
   }, [data]);
 
+  const displayShowing = useMemo(() => {
+    if (dataInfo) {
+      if (page * 20 < dataInfo?.count) {
+        return page * 20;
+      } else {
+        return (page - 1) * 20 + (dataInfo?.count % (page - 1));
+      }
+    }
+  }, [dataInfo]);
+
   useEffect(() => {
     if (data?.characters.info) {
       setDataInfo(data?.characters.info);
-      if (!data?.characters.info.prev) {
-        setDisplayedResults(data?.characters.results.length);
-      }
     }
   }, [data?.characters.info]);
 
@@ -228,7 +237,7 @@ const CharactersTable = () => {
 
         <PaginationContainer>
           <span>
-            Showing {displayedResults} of {dataInfo?.count} entries
+            Showing {displayShowing} of {dataInfo?.count} entries
           </span>
           <div className="pagination-buttons">
             <Button

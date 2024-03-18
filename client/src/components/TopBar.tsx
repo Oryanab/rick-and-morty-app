@@ -1,4 +1,4 @@
-import { Box, Heading } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 import React from "react";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";

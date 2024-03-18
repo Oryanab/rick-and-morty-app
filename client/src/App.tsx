@@ -1,11 +1,9 @@
 import React from "react";
-import { SessionProvider } from "./contexts/SessionProvider";
-import { Flex, Text, Button, Box } from "@radix-ui/themes";
+import { Box } from "@radix-ui/themes";
 import Pannel from "./components/Pannel";
 import styled from "styled-components";
 import SideBar from "./components/SideBar";
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
-import { CharactersProvider } from "./contexts/CharactersProvider";
 
 const AppContainer = styled(Box)`
   height: 100vh;
@@ -21,16 +19,12 @@ const client = new ApolloClient({
 
 const App = () => {
   return (
-    <SessionProvider>
-      <ApolloProvider client={client}>
-        <CharactersProvider>
-          <AppContainer>
-            <SideBar />
-            <Pannel />
-          </AppContainer>
-        </CharactersProvider>
-      </ApolloProvider>
-    </SessionProvider>
+    <ApolloProvider client={client}>
+      <AppContainer>
+        <SideBar />
+        <Pannel />
+      </AppContainer>
+    </ApolloProvider>
   );
 };
 

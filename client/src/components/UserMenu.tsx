@@ -1,14 +1,6 @@
-import {
-  Box,
-  Card,
-  Flex,
-  Text,
-  Avatar,
-  DropdownMenu,
-  Button,
-} from "@radix-ui/themes";
-import { TriangleDownIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 import React from "react";
+import { Flex, DropdownMenu } from "@radix-ui/themes";
+import { TriangleDownIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 
 const UserMenu = () => {
   return (
